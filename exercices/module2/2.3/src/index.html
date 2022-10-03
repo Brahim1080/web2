@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your page title</title>
+  <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <header></header>
+
+      <form action="POST" class="mt-5" id="myForm">
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Number of lines</label>
+          <input type="text" class="form-control" id="lines" placeholder="Enter number of lines">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label" >Number of colomns</label>
+          <input type="text" class="form-control" id="colomns" placeholder="Enter number of colomns">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label" >Initial string</label>
+          <input type="text" class="form-control" id="string" placeholder="Init string">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Create table</button>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="col">
+          <!-- Make our table responsive with Bootstrap by wrapping it with .table-responsive -->
+          <div id="tableWrapper" class="table-responsive mt-3"></div>
+        </div>
+      </div>
+  </main>
+  <footer></footer>
+  </div>
+</body>
+
+</html>
