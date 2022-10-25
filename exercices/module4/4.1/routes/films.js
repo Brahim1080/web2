@@ -34,7 +34,7 @@ const MOVIES = [
 
 /* Read All films . */
 router.get("/", function (req, res, next) {
-  const filteredByDuration = req?.query
+  const filteredByDuration = req?.query?.hasOwnProperty("minimum-duration")
     ? Number(req.query["minimum-duration"])
     : undefined;
 
@@ -43,8 +43,8 @@ router.get("/", function (req, res, next) {
 
   //Filtered sera toujouts un number car on le transform en number ??
   if (
-    filteredByDuration &&
-    (typeof filteredByDuration !== "number" || filteredByDuration <= 0)
+    filteredByDuration !== undefined &&
+    (isNaN(filteredByDuration) || filteredByDuration <= 0)
   )
     return res.sendStatus(400);
 

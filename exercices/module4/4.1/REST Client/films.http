@@ -4,7 +4,7 @@
 GET {{baseUrl}}/films
 
 ### Read all films filtered by duration 
-GET {{baseUrl}}/films?minimum-duration=95
+GET {{baseUrl}}/films?minimum-duration=200
 
 ### Read one 
 GET {{baseUrl}}/films/3
