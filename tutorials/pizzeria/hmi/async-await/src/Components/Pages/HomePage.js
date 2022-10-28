@@ -22,11 +22,8 @@ const HomePage = async () => {
   try {
     clearPage();
     renderPageTitle('HomePage');
-    const response = await fetch('/api/pizzas');
 
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-    const pizzas = await response.json();
+    const pizzas = await getAllPizzas();
 
     renderMenuFromString(pizzas);
     attachOnMouseEventsToGoGreen();
@@ -36,6 +33,23 @@ const HomePage = async () => {
     console.error('HomePage::error: ', err);
   }
 };
+
+async function getAllPizzas() {
+  try {
+    const response = await fetch('/api/pizzas');
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    const pizzas = await response.json();
+
+    return pizzas;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getAllPizzas::error: ', err);
+    throw err;
+  }
+}
+
 
 function renderMenuFromString(menu) {
   const menuTableAsString = getMenuTableAsString(menu);
