@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000
+
+### Read All films
+GET {{baseUrl}}/films
+
+### Read all films filtered by duration 
+GET {{baseUrl}}/films?minimum-duration=90
+
+### Read one 
+GET {{baseUrl}}/films/3
+
+### Create a film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title":"NewFilllgggglm",
+    "duration":"99",
+    "budjet":"957",
+    "link":"link.com"
+}
+
+### Delete the film identify by 4
+DELETE {{baseUrl}}/films/4
+
+
+### Update the film identified by 1
+PATCH {{baseUrl}}/films/8
+Content-Type: application/json
+
+{  
+    "title":"Update film",
+    "duration": "994",
+    "budjet": "9575",
+    "link": "lin44k.com"
+    
+}
+
+
