@@ -1,3 +1,4 @@
+const { table } = require("node:console");
 const path = require("node:path");
 
 const { parse, serialize } = require("../utils/json");
@@ -36,24 +37,23 @@ const MOVIES = [
 ];
 
 function readAllMovies(filtered) {
-  const filteredByDuration = filtered?.hasOwnProperty("minimum-duration")
+  /* const filteredByDuration = filtered?.hasOwnProperty("minimum-duration")
     ? Number(filtered)
-    : undefined;
+    : undefined; */
 
+    console.log({filtered});
   if (
-    filteredByDuration !== undefined &&
-    (isNaN(filteredByDuration) || filteredByDuration <= 0)
+    filtered !== undefined &&
+    (isNaN(filtered) || filtered <= 0)
   )
     return res.sendStatus(400);
 
   const movies = parse(jsonDbPath, MOVIES);
-  if (!filteredByDuration) return movies;
+  if (!filtered) return movies;
 
-  const filteredMovies = [...movies].filter(
-    (film) => film.duration >= filteredByDuration
+  return [...movies].filter(
+    (film) => film.duration >= filtered
   );
-
-  return filtered;
 }
 
 function readOneMovie(id) {

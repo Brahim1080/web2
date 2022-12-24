@@ -14,8 +14,8 @@ POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
-    "title":"NewFilllgggglm",
-    "duration":"99",
+    "title":"Test",
+    "duration": 40,
     "budjet":"957",
     "link":"link.com"
 }

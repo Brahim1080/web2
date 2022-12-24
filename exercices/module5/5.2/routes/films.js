@@ -12,7 +12,9 @@ const {
 
 /* Read All films . */
 router.get("/", function (req, res, next) {
-  const movies = readAllMovies(req.query["minimum-duration"]);
+  const filter = req.query["minimum-duration"];
+  console.log({filter});
+  const movies = readAllMovies(filter);
   return res.json(movies);
 });
 
