@@ -16,13 +16,13 @@ Content-Type: application/json
     "password":"admin"
 }
 
-#### Create a pizza with the admin token
+#### Create a pizza with the admin token 
 POST {{baseUrl}}/pizzas
 Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
 {
-    "title":"Magic Green",
+    "title":"Magic GreenTEST",
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 
@@ -61,7 +61,7 @@ Authorization: {{managerToken}}
 }
 
 
-
+###
 GET {{baseUrl}}/pizzas
 
 ### Read all pizzas sorted by title (ascending)

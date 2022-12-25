@@ -42,7 +42,7 @@ router.post('/', authorize, isAdmin, (req, res) => {
 });
 
 // Delete a pizza from the menu based on its id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authorize, isAdmin, (req, res) => {
   const deletedPizza = deleteOnePizza(req.params.id);
 
   if (!deletedPizza) return res.sendStatus(404);
@@ -51,7 +51,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Update a pizza based on its id and new values for its parameters
-router.patch('/:id', (req, res) => {
+router.patch('/:id',  authorize, isAdmin,(req, res) => {
   const title = req?.body?.title;
   const content = req?.body?.content;
 

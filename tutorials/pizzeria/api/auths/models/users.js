@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 const jwt = require('jsonwebtoken');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
+require('dotenv').config();
 
-const jwtSecret = 'ilovemypizza!';
+const jwtSecret = process.env.JWT_SECRET;
 const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
 
 const jsonDbPath = path.join(__dirname, '/../data/users.json');
@@ -92,4 +94,3 @@ module.exports = {
   register,
   readOneUserFromUsername,
 };
-
