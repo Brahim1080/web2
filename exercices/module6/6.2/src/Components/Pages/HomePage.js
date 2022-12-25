@@ -19,17 +19,46 @@ function attachEventListener(){
     
   });
 
-  const title = document.querySelectorAll('.title');
+  const save = document.querySelectorAll('.btnSave');
 
-  title.forEach(element => {
-    element.addEventListener('input',updateTitle)
+  save.forEach(element => {
+    element.addEventListener('click',update)
     
   });
 }
-async function updateTitle(e) {
+async function update(e) {
   e.preventDefault();
 
-  
+  try {
+
+    const {id} = e.target.dataset;
+    const tr = e.target.parentElement.parentElement;
+    const title = tr.children[0].firstChild.nodeValue;
+    const link = tr.children[1].lastElementChild.href;
+    const duration = tr.children[2].firstChild.nodeValue;
+    const budjet = tr.children[3].firstChild.nodeValue;
+    console.log({id,title,link,duration,budjet});
+
+    const options = {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title,
+        link,
+        duration,
+        budjet
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    fetch(`api/films/${id}`,options);
+
+    window.location.reload();
+    
+  } catch (error) {
+    console.log(error);
+  }
   
 }
 
@@ -108,13 +137,13 @@ function getAllMoviesListAsString(moviesList) {
 
   moviesList?.forEach((movie) => {
     list += ` <tr>
-      <td class="fw-bold text-info title" contenteditable="true" data-id="${movie.id}"> ${movie.title}</td>
-      <td class ="text-info"> <a href="${movie.link}">${movie.link}</a></td>
-      <td class ="text-info">${movie.duration}</td>
-      <td class ="text-info">${movie.budjet}</td>
+      <td class="fw-bold text-info" contenteditable="true" > ${movie.title}</td>
+      <td class ="text-info" contenteditable="true"> <a href="${movie.link}">${movie.link}</a></td>
+      <td class ="text-info" contenteditable="true">${movie.duration}</td>
+      <td class ="text-info" contenteditable="true">${movie.budjet}</td>
       <td class ="text-info">
       <button type="button" class="btn btn-primary btnDelete"  data-id="${movie.id}">Delete</button>
-      <button type="button" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-primary btnSave" data-id="${movie.id}">Save</button>
       </td>
     </tr>`;
   });
