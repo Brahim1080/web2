@@ -1,0 +1,72 @@
+@baseUrl = http://localhost:3000
+
+
+### Create a film by using the admin account
+#### First login as the admin
+##### Define a request variable nammed admin :
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+##### 2.1.2 Define a file variable to simplify the access to the token of admin
+@adminToken = {{admin.response.body.token}}
+
+#### Create a film with the admin token
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "title":"Test",
+    "duration": 40,
+    "budjet":957,
+    "link":"link.com"
+}
+
+### Update the film identified by 1
+PATCH {{baseUrl}}/films/4
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{  
+    "title":"Update film",
+    "duration": 60,
+    "budjet": 700,
+    "link": "lin44k.com"
+    
+}
+
+### Delete the film identify by 4
+DELETE {{baseUrl}}/films/4
+Authorization: {{adminToken}}
+
+### Read All films
+GET {{baseUrl}}/films
+
+### Read all films filtered by duration 
+GET {{baseUrl}}/films?minimum-duration=90
+
+### Read one 
+GET {{baseUrl}}/films/3
+
+### Create a film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title":"Test",
+    "duration": 40,
+    "budjet":"957",
+    "link":"link.com"
+}
+
+
+
+
+
+
+
